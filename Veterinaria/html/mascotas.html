@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Veterinario de Pueblo Paleta</title>
+    <link rel="stylesheet" href="../css/estilosMascotas.css">
+    <script language="javascript" src="../js/codigoMascotas.js"></script>
+</head>
+
+<body>
+    <div id="divPrincipal">
+        <header id="ContenedorMenu">
+            <ul class="ajustarMenuBarra">
+                <li id="botonImg"><a href="Index.html"><img src="../recursos/logoPrincipal.png"
+                            alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
+                <li><a href="">Inicio</a></li>
+                <li><a href="">Mascotas</a></li>
+                <li><a href="">Citas</a></li>
+                <li><a href="">Artículos</a></li>
+                <li><a href="">Sucursales</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="">Cuenta</a></li>
+            </ul>
+        </header>
+
+        <div id="divContenedorInfo">
+            <div id="divTablaMascotas">
+                <table id="tablaMascotasAgregadas">
+                    <tr>
+                        <th id="encabezadoTabla">Tus Mascotas</th>
+                    </tr>
+                    <tr>
+                        <th><img id="mascota1" src="../recursos/perro1.jpg" onclick="cargarInfo('perro1')"></th>
+                    </tr>
+                    <tr>
+                        <th><img src="../recursos/erizo1.jpg" onclick="cargarInfo('erizo1')"></th>
+                    </tr>
+                    <tr>
+                        <th><img src="../recursos/perro2.jpg" onclick="cargarInfo('perro2')"></th>
+                    </tr>
+                    <tr>
+                        <th><img src="../recursos/mono1.jpg" onclick="cargarInfo('mono1')"></th>
+                    </tr>
+                    <tr>
+                        <th><img src="../recursos/perro3.jpg" onclick="cargarInfo('perro3')"></th>
+                    </tr>
+                </table>
+            </div>
+            <div id="divInfoMascotas">
+                <iframe id="iframeMascotas" src="infoMascota.html" width="100%" height="1000px" frameborder="no" scrolling="yes" style="border: 1px solid black">
+            </div>
+        </div>
+
+        <footer id="ContenedorInferior">
+            <div id="menuInferior">
+                <h2>Veterinaria</h2>
+                <ul>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Mascotas</a></li>
+                    <li><a href="">Citas</a></li>
+                    <li><a href="">Artículos</a></li>
+                    <li><a href="">Sucursales</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Cuenta</a></li>
+                </ul>
+            </div>
+            <div id="infoContacto">
+                <h2>Contáctanos (Atención al Cliente)</h2>
+                <ul>
+                    <li>e-mail:<a href="mailto:clientes_duda@vet.com.mx"> clientes_duda@vet.com.mx</a></li>
+                    <li>Tel: 9991014169</li>
+                    <li>Fax: 9991014169</li>
+                </ul>
+            </div>
+            <div id="redesSociales">
+                <h2>¡Síguenos en nuestras redes sociales!</h2>
+                <a href="https://twitter.com/LeagueOfLegends"><img src="../recursos/x.png" alt="X"></a>
+                <a href="https://www.instagram.com/nintendoamerica"><img src="../recursos/instagram.png"
+                        alt="Instagram"></a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="../recursos/facebook.png"
+                        alt="Facebook"></a>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

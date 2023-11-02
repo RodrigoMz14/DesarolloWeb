@@ -1,0 +1,172 @@
+body{
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+#divPrincipal {
+    flex-wrap: nowrap;
+}
+
+/* CSS para el menu superior */ 
+#ContenedorMenu{
+    width: 100%;
+}
+
+#imgLogo{
+    width: 60%;
+}
+
+#ContenedorMenu{
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+ul.ajustarMenuBarra {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2445ff;
+}
+  
+ul.ajustarMenuBarra li {
+    float: left;
+    padding-left: 3%;
+}
+  
+ul.ajustarMenuBarra li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+ul.ajustarMenuBarra li a:hover{
+    color: #000000;
+}
+
+ul.ajustarMenuBarra li#botonImg {
+    float: left;
+}
+
+ul.ajustarMenuBarra li:not(#botonImg){
+    padding-top: 15px;
+}
+
+/* Fin del CSS para el menu superior */ 
+  
+
+/* CSS para ajustar la pagina dado el tamaño de la ventana */ 
+
+@media screen and (max-width: 1000px) {
+    ul.ajustarMenuBarra li#botonImg, ul.ajustarMenuBarra li {
+        float: none;
+    }
+
+    #ContenedorInferior{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #divContenedorInfo{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* Fin del CSS para ajustar la pagina dado el tamaño de la ventana */ 
+
+/* CSS para el menu inferior */ 
+
+#ContenedorInferior{
+    background-color: #2445ff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#ContenedorInferior div{
+    padding-right: 13%;
+}
+
+#ContenedorInferior h2{
+    color: #8ca7a7;
+}
+
+#ContenedorInferior li, #ContenedorInferior li a{
+    list-style-type: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#redesSociales img{
+    width: 50px;
+    height: 50px;
+}
+
+#ContenedorInferior li a:hover{
+    color: #000000;
+}
+
+/* Fin del CSS para el menu inferior */ 
+
+/* CSS para el contenido principal */ 
+
+#divContenedorInfo{
+    overflow: auto;
+    width: 100%;
+    display: flex;
+    padding: 2%;
+    padding-left: 0px;
+}
+
+#divTablaMascotas{
+    width: 20%;
+    display: flex;
+    padding-left: 10px;
+    align-items: center;
+}
+
+#tablaMascotasAgregadas, tr, th{
+    border: 2px solid #000000;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+#tablaMascotasAgregadas tr th img{
+    width: 100%;
+    height: 100%;
+}
+
+#tablaMascotasAgregadas{
+    width: 70%;
+}
+
+#divInfoMascotas{
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#encabezadoTabla{
+    color: #fa6603;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+#tablaMascotasAgregadas th:not(#encabezadoTabla){
+    color: #000000;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+}
+
+#iframeMascotas {
+    border: 1px solid black;
+    border-radius: 5px;
+    border-top-right-radius: 75px;
+}
+/* Fin del CSS para el contenido principal */ 
