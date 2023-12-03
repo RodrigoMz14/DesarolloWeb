@@ -10,3 +10,7 @@ images.forEach((imagePath) => {
     image.src = imagePath;
     imageContainer.appendChild(image);
 });
+
+function redirigirPagina(numPagina){
+    window.location.href = 'articulos.php?page=' + numPagina;
+}
