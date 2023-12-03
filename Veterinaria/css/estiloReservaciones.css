@@ -1,0 +1,120 @@
+body{
+    margin: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+#divPrincipal {
+    flex-wrap: nowrap;
+}
+
+/* CSS para el menu superior */ 
+#ContenedorMenu{
+    width: 100%;
+}
+
+#imgLogo{
+    width: 60%;
+}
+
+#ContenedorMenu{
+    font-size: 25px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+ul.ajustarMenuBarra {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2445ff;
+}
+  
+ul.ajustarMenuBarra li {
+    float: left;
+    padding-left: 3%;
+}
+  
+ul.ajustarMenuBarra li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+ul.ajustarMenuBarra li a:hover{
+    color: #000000;
+}
+
+ul.ajustarMenuBarra li#botonImg {
+    float: left;
+}
+
+ul.ajustarMenuBarra li:not(#botonImg){
+    padding-top: 15px;
+}
+
+/* Fin del CSS para el menu superior */ 
+  
+
+/* CSS para ajustar la pagina dado el tamaño de la ventana */ 
+
+@media screen and (max-width: 1000px) {
+    ul.ajustarMenuBarra li#botonImg, ul.ajustarMenuBarra li {
+        float: none;
+    }
+
+    #ContenedorInferior{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #divContenedorInfo{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* Fin del CSS para ajustar la pagina dado el tamaño de la ventana */ 
+
+/* CSS para el menu inferior */ 
+
+#ContenedorInferior{
+    background-color: #2445ff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#ContenedorInferior div{
+    padding-right: 13%;
+}
+
+#ContenedorInferior h2{
+    color: #8ca7a7;
+}
+
+#ContenedorInferior li, #ContenedorInferior li a{
+    list-style-type: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#redesSociales img{
+    width: 50px;
+    height: 50px;
+}
+
+#ContenedorInferior li a:hover{
+    color: #000000;
+}
+
+/* Fin del CSS para el menu inferior */ 
+
+/* CSS para el contenido principal */ 
+
+
+
+/* Fin del CSS para el contenido principal */ 
