@@ -69,13 +69,13 @@ form .username{
 }
 
 .username input:focus ~ label,
-.username input:focus ~ label{
+.username input:valid ~ label{
     top: -5px;
     color:blue;
 }
 
 .username input:focus ~ span::before,
-.username input:focus ~ span::before{
+.username input:valid ~ span::before{
     width: 100%;
 }
 

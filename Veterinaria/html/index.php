@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (empty($_SESSION["id"])){
+    header("location: login.php");
+}
+
+$nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +19,16 @@
 </head>
 <body>
     <div id="divPrincipal">
+        <div>
+
+        </div>
         <header id="ContenedorMenu">
+            <!-- Agrega un espacio para mostrar el nombre del usuario -->
+            <span id="nombreUsuario">
+                <?php
+                echo "Bienvenid@ ". $nombreUsuario;
+                ?>
+            </span>
             <ul class="ajustarMenuBarra">
                 <li id="botonImg"><a href="Index.html"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
                 <li><a href="">Inicio</a></li>
@@ -18,6 +38,8 @@
                 <li><a href="">Sucursales</a></li>
                 <li><a href="">Contacto</a></li>
                 <li><a href="">Cuenta</a></li>
+                <!-- Agrega un botón para cerrar sesión -->
+                <li><a href="../php/controladorCerrarSesion.php" id="btnSalir" name="">Salir</a></li>
             </ul>
         </header>
 
