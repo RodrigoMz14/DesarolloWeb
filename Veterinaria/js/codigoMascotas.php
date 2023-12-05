@@ -10,7 +10,14 @@ require('../php/databaseConnection.php');
 $idUsuario =  $_SESSION["id"];
 
 try {
-    $stmt = $conexion->prepare("SELECT nombreMascota, Edad, Sexo, Especie, Raza, Imagen, NotasVet FROM mascotasdeusuario WHERE idMascota = :idMascota");
+
+    $stmt = $conexion->prepare(
+        "SELECT m.nombreMascota, m.Edad, m.Sexo, m.Especie, m.Raza, m.Imagen, m.NotasVet
+        FROM mascotasporusuario mu
+        JOIN mascotas m on m.idMascota = mu.idMascota
+        WHERE mu.idMascota = :idMascota
+        ;"
+    );
     $stmt->bindParam(':idMascota', $idMascota);
     $stmt->execute();
     $petData = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,6 +40,7 @@ try {
     echo $datosJSON;
 
 } catch (PDOException $e) {
-    echo "Error de consulta: " . $e->getMessage();
+    //echo "Error de consulta: " . $e->getMessage();
+    echo $e->getMessage();
 }
 ?>

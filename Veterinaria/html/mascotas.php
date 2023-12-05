@@ -11,9 +11,14 @@ function generarTabla() {
 
     require('../php/databaseConnection.php');
     $idUsuario =  $_SESSION["id"];
-
     try {
-        $stmt = $conexion->prepare("SELECT Imagen, IdMascota FROM mascotasdeusuario WHERE idUsuario = :idUsuario");
+        $stmt = $conexion->prepare(
+            "SELECT m.Imagen, m.idMascota 
+            FROM mascotasporusuario mu 
+            JOIN mascotas m on m.idMascota = mu.idMascota 
+            WHERE mu.idUsuario  = :idUsuario
+            ;"
+        );
         $stmt->bindParam(':idUsuario', $idUsuario);
         $stmt->execute();
 
@@ -25,7 +30,7 @@ function generarTabla() {
         echo "<tr><th id=\"encabezadoTabla\">Tus Mascotas</th></tr>\n";
 
         for($i = 0; $i < $contador; $i++){
-            echo "<tr><th><img src=\"" .$userData[$i]["Imagen"] ."\" onclick=\"iniciarProceso('" .$userData[$i]["IdMascota"]. "')\"></th></tr>\n";    
+            echo "<tr><th><img src=\"" .$userData[$i]["Imagen"] ."\" onclick=\"iniciarProceso('" .$userData[$i]["idMascota"]. "')\"></th></tr>\n";    
         }
         echo "</table>\n";
         
