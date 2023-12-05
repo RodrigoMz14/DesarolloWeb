@@ -1,5 +1,4 @@
 <?php
-
     include('databaseConnection.php');
 
     // Obtener el número total de artículos
@@ -20,17 +19,50 @@
 
     // Calcular el índice de inicio para la consulta SQL
     $startIndex = ($currentPage - 1) * $articlesPerPage;
+    
+    // Obtener los filtros de la URL o del Local Storage
+    $filtros = obtenerFiltros();
+
+    // Obtener los filtros de la URL o del Local Storage
+    function obtenerFiltros() {
+        $filtros = array(
+            'mascotas' => $_GET['mascotas'] ?? null,
+            'categoria' => $_GET['categoria'] ?? null,
+            'edad' => $_GET['edad'] ?? null,
+        );
+
+        // Decodificar filtros almacenados en el Local Storage
+        if (isset($_GET['filtros'])) {
+            $filtrosLocalStorage = json_decode($_GET['filtros'], true);
+
+            // Sobrescribir los filtros con los almacenados en el Local Storage
+            $filtros = array_merge($filtros, $filtrosLocalStorage);
+        }
+
+        return $filtros;
+    }
 
     function obtenerArticulos($startIndex, $articlesPerPage) {
-        global $pdo;
-    
+        global $pdo, $filtros;
+        
+        // Construir con respecto a filtros las consultas SQL.
+        $filtroMascotas = isset($filtros['mascotas']) ? "AND tipoAnimal = :mascotas" : "";
+        $filtroCategoria = isset($filtros['categoria']) ? "AND categoria = :categoria" : "";
+        $filtroEdad = isset($filtros['edad']) ? "AND edad = :edad" : "";
+
         // Consulta SQL para obtener los artículos de la página actual
-        $sqlArticles = "SELECT * FROM articulo LIMIT :startIndex, :articlesPerPage";
+        $sqlArticles = "SELECT * FROM articulo WHERE 1 $filtroMascotas $filtroCategoria $filtroEdad LIMIT :startIndex, :articlesPerPage";
         $stmtArticles = $pdo->prepare($sqlArticles);
         $stmtArticles->bindParam(':startIndex', $startIndex, PDO::PARAM_INT);
         $stmtArticles->bindParam(':articlesPerPage', $articlesPerPage, PDO::PARAM_INT);
+
+         // Bind de los valores de los filtros
+        if ($filtroMascotas != "") $stmtArticles->bindParam(':mascotas', $filtros['mascotas'], PDO::PARAM_STR);
+        if ($filtroCategoria != "") $stmtArticles->bindParam(':categoria', $filtros['categoria'], PDO::PARAM_STR);
+        if ($filtroEdad != "") $stmtArticles->bindParam(':edad', $filtros['edad'], PDO::PARAM_STR);
+
         $stmtArticles->execute();
-    
+
         return $stmtArticles;
     }
     
@@ -61,9 +93,9 @@
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             // Datos de los artículos
+            $idArticulo = $row['idArticulo'];
             $nombre = $row['nombre'];
             $descripcion = $row['descripcion'];
-            $productoId = $row['idArticulo'];
             $cantidad = $row['cantidad'];
             $precio = $row['precio'];
             $urlImagen = $row['url_imagen'];
@@ -72,17 +104,16 @@
             echo '    <div class="grid-article">';
             echo '        <a href="#"><p>' . $nombre . '</p></a>';
             echo '        <p>' . $descripcion . '</p>';
-            echo '        <div class="info" data-product="' . $productoId . '">';
+            echo '        <div class="info">';
             echo '            <p>Disponibilidad: <span class="cantidad">' . $cantidad . '</span></p>';
             echo '            <p>Precio: <span class="precio">$' . number_format($precio, 2) . ' mxn</span></p>';
-            echo '            <input type="button" value="Comprar">';
+            echo '            <input type="button" class="guardar-carrito" data-product="' . $idArticulo .'" value="Guardar en Carrito">';
             echo '        </div>';
             echo '    </div>';
             echo '    <div class="grid-article"><a href="#"><img src="' . $urlImagen . '"></a></div>';
             echo '</div>';
         }
     }
-    
 
 ?>
 
@@ -119,52 +150,84 @@
                 <h2>Filtros</h2>
                 <h4>Mascotas</h4>
                 <label>
-                    <input type="checkbox"> Perro
+                    <input type="checkbox" name="mascotas" value="Perro" onclick="deseleccionar(this)"> Perro
                 </label>
                 <label>
-                    <input type="checkbox"> Gato
+                    <input type="checkbox" name="mascotas" value="Gato" onclick="deseleccionar(this)"> Gato
                 </label>
                 <label>
-                    <input type="checkbox"> Animal pequeño
+                    <input type="checkbox" name="mascotas" value="Animal pequeño" onclick="deseleccionar(this)"> Animal pequeño
                 </label>
                 <label>
-                    <input type="checkbox"> Ave
+                    <input type="checkbox" name="mascotas" value="Ave" onclick="deseleccionar(this)"> Ave
                 </label>
                 
                 <h4>Categoría</h4>
                 <label>
-                    <input type="checkbox"> Alimento para mascota
+                    <input type="checkbox" name="categoria" value="Alimento para mascota" onclick="deseleccionar(this)"> Alimento para mascota
                 </label>
                 <label>
-                    <input type="checkbox"> Medicamento
+                    <input type="checkbox" name="categoria" value="Medicamento" onclick="deseleccionar(this)"> Medicamento
                 </label>
                 <label>
-                    <input type="checkbox"> Accesorio
+                    <input type="checkbox" name="categoria" value="Accesorio" onclick="deseleccionar(this)"> Accesorio
                 </label>
                 <label>
-                    <input type="checkbox"> Productos de cuidado
+                    <input type="checkbox" name="categoria" value="Productos de cuidado" onclick="deseleccionar(this)"> Productos de cuidado
                 </label>
                 <label>
-                    <input type="checkbox"> Juguete para mascota
+                    <input type="checkbox" name="categoria" value="Juguete para mascota" onclick="deseleccionar(this)"> Juguete para mascota
                 </label>
 
                 <h4>Edad de la mascota</h4>
                 <label>
-                    <input type="checkbox"> Cachorro
+                    <input type="checkbox" name="edad" value="Cachorro" onclick="deseleccionar(this)"> Cachorro
                 </label>
                 <label>
-                    <input type="checkbox"> Adulto
+                    <input type="checkbox" name="edad" value="Adulto" onclick="deseleccionar(this)"> Adulto
                 </label>
                 <label>
-                    <input type="button" value="Filtrar">
+                    <input type="button" value="Filtrar" onclick="filtrarArticulos()">
                 </label>
-            </div>
+            </div> 
 
-            <?php generarArticulos() ?>
+            <div>
+                <?php generarArticulos() ?>
+            </div>
         </div>
 
         <div class="pagination">
             <?php generarPaginacion() ?>
         </div>  
+
+        <footer id="ContenedorInferior">
+            <div id="menuInferior">
+                <h2>Veterinaria</h2>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="">Mascotas</a></li>
+                    <li><a href="">Citas</a></li>
+                    <li><a href="articulos.html">Artículos</a></li>
+                    <li><a href="">Sucursales</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Cuenta</a></li>
+                </ul>
+            </div>
+            <div id="infoContacto">
+                <h2>Contáctanos (Atención al Cliente)</h2>
+                <ul>
+                    <li>e-mail:<a href="mailto:clientes_duda@vet.com.mx"> clientes_duda@vet.com.mx</a></li>
+                    <li>Tel: 9991014169</li>
+                    <li>Fax: 9991014169</li>
+                </ul>
+            </div>
+            <div id="redesSociales">
+                <h2>¡Síguenos en nuestras redes sociales!</h2>
+                <a href="https://twitter.com/LeagueOfLegends"><img src="../recursos/x.png" alt="X"></a>
+                <a href="https://www.instagram.com/nintendoamerica"><img src="../recursos/instagram.png" alt="Instagram"></a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="../recursos/facebook.png" alt="Facebook"></a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
