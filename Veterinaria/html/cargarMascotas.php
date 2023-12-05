@@ -1,11 +1,12 @@
 <?php
-include("../html/databaseConnection.php");
-$idUsuarioRegistrado = 0;
-$sqlMascotasUsuario = "SELECT idMascota, nombreMascota FROM mascotasdeusuario
-                      WHERE idUsuario = :idUsuario";
+include("../php/databaseConnection.php");
+$sqlMascotasUsuario = "SELECT Mascotas.idMascota, Mascotas.nombreMascota
+    FROM Mascotas
+    JOIN MascotasPorUsuario ON Mascotas.idMascota = MascotasPorUsuario.idMascota
+    WHERE MascotasPorUsuario.idUsuario = :idUsuario";
 
-$queryMascotasUsuario = $pdo->prepare($sqlMascotasUsuario);
-$queryMascotasUsuario->bindParam(':idUsuario', $idUsuarioRegistrado, PDO::PARAM_INT);
+$queryMascotasUsuario = $conexion->prepare($sqlMascotasUsuario);
+$queryMascotasUsuario->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
 $queryMascotasUsuario->execute();
 
 $mascotasUsuario = $queryMascotasUsuario->fetchAll(PDO::FETCH_ASSOC);

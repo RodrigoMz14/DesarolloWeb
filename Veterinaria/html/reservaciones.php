@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (empty($_SESSION["id"])){
+    header("location: login.php");
+}
+
+$idUsuario = $_SESSION["id"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +84,7 @@
             <div class="col-md-6">  
                 <button class="btn btn-success btn-block" id="btn_h1" data-dismiss="modal">08:00 - 10:00</button>
                 <button class="btn btn-success btn-block" id="btn_h2" data-dismiss="modal">10:00 - 12:00</button>
-                <button class="btn btn-success btn-block" id="btn_3" data-dismiss="modal">12:00 - 14:00</button>
+                <button class="btn btn-success btn-block" id="btn_h3" data-dismiss="modal">12:00 - 14:00</button>
             </div>
             <div class="col-md-6"> 
                 <button class="btn btn-success btn-block" id="btn_h4" data-dismiss="modal">14:00 - 16:00</button>
@@ -85,7 +95,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -95,14 +104,57 @@
     $('#btn_h1').click(function(){
         $('#formulario_modal').modal("show");;
         $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
         var h1 = "08:00 - 10:00";
         $('#hora_reserva').val(h1);
+        $('#hora_reserva2').val(h1);
+    });
+    $('#btn_h2').click(function(){
+        $('#formulario_modal').modal("show");;
+        $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
+        var h2 = "10:00 - 12:00";
+        $('#hora_reserva').val(h2);
+        $('#hora_reserva2').val(h2);
+    });
+    $('#btn_h3').click(function(){
+        $('#formulario_modal').modal("show");;
+        $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
+        var h3 = "12:00 - 14:00";
+        $('#hora_reserva').val(h3);
+        $('#hora_reserva2').val(h3);
+    });
+    $('#btn_h4').click(function(){
+        $('#formulario_modal').modal("show");;
+        $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
+        var h4 = "14:00 - 16:00";
+        $('#hora_reserva').val(h4);
+        $('#hora_reserva2').val(h4);
+    });
+    $('#btn_h5').click(function(){
+        $('#formulario_modal').modal("show");;
+        $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
+        var h5 = "16:00 - 18:00";
+        $('#hora_reserva').val(h5);
+        $('#hora_reserva2').val(h5);
+    });
+    $('#btn_h6').click(function(){
+        $('#formulario_modal').modal("show");;
+        $('#fecha_reserva').val(a);
+        $('#fecha_reserva2').val(a);
+        var h6 = "18:00 - 20:00";
+        $('#hora_reserva').val(h6);
+        $('#hora_reserva2').val(h6);
     });
 </script>
 
 <?php
     include("../html/cargarMascotas.php");
 ?>
+
 <!-- Modal -->
 <div class="modal fade" id="formulario_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -114,32 +166,42 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
+        <form action="../php/controlador_reserva.php" method="post">
             <div class="row">
                 <div class="col-md-6">
                     <label for="">Nombre de la mascota</label>
                     <select name="mascota" id="">
                         <?php foreach ($mascotasUsuario as $mascota) { ?>
-                            <option value="<?php echo $mascota['nombreMascota']; ?>"><?php echo $mascota['nombreMascota']; ?></option>
+                            <option value="<?php echo $mascota['idMascota']; ?>"><?php echo $mascota['nombreMascota']; ?></option>
                         <?php } ?>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="">Fecha de reserva</label>
                     <input type="text" class="form-control" id="fecha_reserva" disabled>
+                    <input type="text" class="form-control" id="fecha_reserva2" name="fecha" hidden>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label for="">Hora de reserva</label>
                     <input type="text" class="form-control" id="hora_reserva" disabled>
+                    <input type="text" class="form-control" id="fecha_reserva2" name="hora" hidden>
                 </div>
-            </div>
-        </form>
-      </div>
+                <div class="col-md-6">
+                  <label for=""> Servicio para la mascota:</label>
+                    <select name="servicio" id="">
+                      <option value="Aseo">Aseo</option>
+                      <option value="Corte">Corte de pelo</option>
+                      <option value="Chequeo">Revisión médica</option>
+                    </select>
+                </div>  
+            </div>        
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </form>
       </div>
     </div>
   </div>

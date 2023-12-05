@@ -22,6 +22,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
         <div>
 
         </div>
+        
         <header id="ContenedorMenu">
             <!-- Agrega un espacio para mostrar el nombre del usuario -->
             <span id="nombreUsuario">

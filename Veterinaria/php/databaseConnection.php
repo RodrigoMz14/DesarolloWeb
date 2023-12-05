@@ -2,7 +2,7 @@
 // conexion.php
 
 $servername = "localhost";
-$dbname = "veterinaria";
+$dbname = "vet";
 $dbusername = "root";
 $dbpassword = "";
 
