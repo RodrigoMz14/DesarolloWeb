@@ -1,9 +1,28 @@
 <?php
     include('databaseConnection.php');
 
+    $filtros = obtenerFiltros();
+
+    // Construir con respecto a filtros las consultas SQL.
+    $filtroMascotas = isset($filtros['mascotas']) ? "AND tipoAnimal = :mascotas" : "";
+    $filtroCategoria = isset($filtros['categoria']) ? "AND categoria = :categoria" : "";
+    $filtroEdad = isset($filtros['edad']) ? "AND edad = :edad" : "";
+
     // Obtener el número total de artículos
-    $sqlCount = "SELECT COUNT(*) as total FROM articulo";
+    $sqlCount = "SELECT COUNT(*) as total FROM articulo WHERE 1 $filtroMascotas $filtroCategoria $filtroEdad";
     $stmtCount = $pdo->prepare($sqlCount);
+
+    // Bind de los valores de los filtros
+    if (!empty($filtros['mascotas'])) {
+        $stmtCount->bindParam(':mascotas', $filtros['mascotas'], PDO::PARAM_STR);
+    }
+    if (!empty($filtros['categoria'])) {
+        $stmtCount->bindParam(':categoria', $filtros['categoria'], PDO::PARAM_STR);
+    }
+    if (!empty($filtros['edad'])) {
+        $stmtCount->bindParam(':edad', $filtros['edad'], PDO::PARAM_STR);
+    }
+    
     $stmtCount->execute();
     $rowCount = $stmtCount->fetch(PDO::FETCH_ASSOC);
     $totalArticles = $rowCount['total'];
