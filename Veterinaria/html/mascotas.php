@@ -3,11 +3,39 @@ session_start();
 if (empty($_SESSION["id"])){
     header("location: login.php");
 }
+require('../php/databaseConnection.php');
 
 $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 
-?>
+function generarTabla() {
 
+    require('../php/databaseConnection.php');
+    $idUsuario =  $_SESSION["id"];
+
+    try {
+        $stmt = $conexion->prepare("SELECT Imagen, IdMascota FROM mascotasdeusuario WHERE idUsuario = :idUsuario");
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->execute();
+
+        $userData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $contador = count($userData);
+
+        echo "<table id=\"tablaMascotasAgregadas\">\n";
+        echo "<tr><th id=\"encabezadoTabla\">Tus Mascotas</th></tr>\n";
+
+        for($i = 0; $i < $contador; $i++){
+            echo "<tr><th><img src=\"" .$userData[$i]["Imagen"] ."\" onclick=\"iniciarProceso('" .$userData[$i]["IdMascota"]. "')\"></th></tr>\n";    
+        }
+        echo "</table>\n";
+        
+    } catch (PDOException $e) {
+        echo "Error de consulta: " . $e->getMessage();
+    }
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +43,8 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Veterinario de Pueblo Paleta</title>
-    <link rel="stylesheet" href="../css/estilosIndex.css">
+    <link rel="stylesheet" href="../css/estilosMascotas.css">
+    <script language="javascript" src="../js/codigoMascotas.js"></script>
 </head>
 <body>
     <div id="divPrincipal">
@@ -45,25 +74,10 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 
         <div id="divContenedorInfo">
             <div id="divTablaMascotas">
-                <table id="tablaMascotasAgregadas">
-                    <tr>
-                        <th id="encabezadoTabla">Tus Mascotas</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 1</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 2</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 3</th>
-                    </tr>
-                </table>
+                <?php generarTabla(); ?>
             </div>
-            <div id="divInfoGeneral">
-                <div id="divArticulos">
-                    Aquí se desplegarán algunos artículos de la veterinaria
-                </div>
+            <div id="divInfoMascotas">
+                <img src="../recursos/fondoMascotas.jpg">
             </div>
         </div>
 
