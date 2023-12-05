@@ -4,6 +4,7 @@ if (empty($_SESSION["id"])){
     header("location: login.php");
 }
 
+require('../php/generarTablaMascotas.php');
 $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 
 ?>
@@ -46,20 +47,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 
         <div id="divContenedorInfo">
             <div id="divTablaMascotas">
-                <table id="tablaMascotasAgregadas">
-                    <tr>
-                        <th id="encabezadoTabla">Tus Mascotas</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 1</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 2</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 3</th>
-                    </tr>
-                </table>
+                <?php generarTablaIndex(); ?>
             </div>
             <div id="divInfoGeneral">
                 <div id="divArticulos">

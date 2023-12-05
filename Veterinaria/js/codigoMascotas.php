@@ -40,7 +40,6 @@ try {
     echo $datosJSON;
 
 } catch (PDOException $e) {
-    //echo "Error de consulta: " . $e->getMessage();
-    echo $e->getMessage();
+    echo "Error de consulta: " . $e->getMessage();
 }
 ?>

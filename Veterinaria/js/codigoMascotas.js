@@ -42,3 +42,11 @@ function cargarInfo(datosMascota) {
         iframeDocument.getElementById("notasVet").innerText = datosMascota.NotasVet;
     }
 }
+
+function registrarMascota(){
+    
+    var divIframe = document.getElementById("divInfoMascotas");
+    divIframe.innerHTML = "<iframe id='iframeMascotas' src='registroMascota.php' width='100%' height='1000px' frameborder='no' scrolling='yes' style='border: 1px solid black'>";
+
+    var iframe = document.getElementById("iframeMascotas");
+}
