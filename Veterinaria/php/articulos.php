@@ -44,20 +44,16 @@
 
     // Obtener los filtros de la URL o del Local Storage
     function obtenerFiltros() {
+
+        $mascotas = isset($_GET['mascotas']) ? $_GET['mascotas'] : NULL;
+        $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : NULL;
+        $edad = isset($_GET['edad']) ? $_GET['edad'] : NULL;
+
         $filtros = array(
-            'mascotas' => $_GET['mascotas'] ?? null,
-            'categoria' => $_GET['categoria'] ?? null,
-            'edad' => $_GET['edad'] ?? null,
+            'mascotas' => $mascotas,
+            'categoria' => $categoria,
+            'edad' => $edad,
         );
-
-        // Decodificar filtros almacenados en el Local Storage
-        if (isset($_GET['filtros'])) {
-            $filtrosLocalStorage = json_decode($_GET['filtros'], true);
-
-            // Sobrescribir los filtros con los almacenados en el Local Storage
-            $filtros = array_merge($filtros, $filtrosLocalStorage);
-        }
-
         return $filtros;
     }
 
@@ -88,17 +84,19 @@
 
     function generarPaginacion() {
         global $currentPage, $totalPages;
+        $filtros = obtenerFiltros();
+        $filtrosEncoded = htmlspecialchars(json_encode($filtros), ENT_QUOTES, 'UTF-8');
 
         if ($currentPage > 1) {
-            echo '<button onclick="redirigirPagina(' . ($currentPage - 1) . ')" class="prev">&lt;</button>';
+            echo '<button onclick="redirigirPagina(' . ($currentPage - 1) . ', ' .  $filtrosEncoded  . ')" class="prev">&lt;</button>';
         }
 
         for ($i = 1; $i <= $totalPages; $i++) {
-            echo '<button onclick="redirigirPagina(' . $i . ')" class="page ' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</button>';
+            echo '<button onclick="redirigirPagina(' . $i . ', ' .  $filtrosEncoded  . ')" class="page' . ($i == $currentPage ? 'active' : '') . '">' . $i . '</button>';
         }
 
         if ($currentPage < $totalPages) {
-            echo '<button onclick="redirigirPagina(' . ($currentPage + 1) . ')" class="next">&gt;</button>';
+            echo '<button onclick="redirigirPagina(' . ($currentPage + 1) . ', ' .  $filtrosEncoded  . ')" class="next">&gt;</button>';
         }
     }
 

@@ -1,34 +1,18 @@
-
-/*
-function redirigirPagina(numPagina){
-    var filtros = obtenerFiltrosSeleccionados();
-    var queryString = 'page=' + numPagina;
-
-    // Agregar filtros a la URL si están presentes
-    for (var filtro in filtros) {
-        if (filtros[filtro]) {
-            queryString += '&' + filtro + '=' + encodeURIComponent(filtros[filtro]);
-        }
-    }
-
-    window.location.href = 'articulos.php?' + queryString;
-}
-*/
-
-function redirigirPagina(numPagina) {
-    var filtros = obtenerFiltrosSeleccionados();
+function redirigirPagina(numPagina, filtrosURL) {
+    var filtrosActuales = obtenerFiltrosSeleccionados();
     var paginaActual = numPagina || obtenerNumeroPaginaActual();
+
+    // Combinar los filtros actuales con los filtros de la URL
+    var filtrosCombinados = { ...filtrosActuales, ...filtrosURL };
+
     var queryString = 'page=' + paginaActual;
 
     // Agregar filtros a la URL si están presentes
-    for (var filtro in filtros) {
-        if (filtros[filtro]) {
-            queryString += '&' + filtro + '=' + encodeURIComponent(filtros[filtro]);
+    for (var filtro in filtrosCombinados) {
+        if (filtrosCombinados[filtro]) {
+            queryString += '&' + filtro + '=' + encodeURIComponent(filtrosCombinados[filtro]);
         }
     }
-
-    // Almacenar filtros en el Local Storage
-    localStorage.setItem('filtros', JSON.stringify(filtros));
 
     // Redirigir a la nueva página con los filtros
     window.location.href = 'articulos.php?' + queryString;
@@ -39,7 +23,6 @@ function obtenerNumeroPaginaActual() {
     var urlParams = new URLSearchParams(window.location.search);
     return parseInt(urlParams.get('page')) || 1;
 }
-
 
 /*
     Funciones para el filtro de productos
