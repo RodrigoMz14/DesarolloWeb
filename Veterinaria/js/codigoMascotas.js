@@ -40,11 +40,15 @@ function cargarInfo(datosMascota) {
         iframeDocument.getElementById("divImgMascota").innerHTML = "<img src='" + datosMascota.Imagen + "' width='300px'></img>";
 
         iframeDocument.getElementById("notasVet").innerText = datosMascota.NotasVet;
+
+        iframeDocument.getElementById("descargar").onclick = function () {
+            window.location.href = "../php/descargar_InfoMascota.php";
+        }
     }
 }
 
-function registrarMascota(){
-    
+function registrarMascota() {
+
     var divIframe = document.getElementById("divInfoMascotas");
     divIframe.innerHTML = "<iframe id='iframeMascotas' src='registroMascota.php' width='100%' height='1000px' frameborder='no' scrolling='yes' style='border: 1px solid black'>";
 

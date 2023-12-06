@@ -54,6 +54,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             </div>
         </div>
         <div id="notasVet"> </div>
+        <input id="descargar" type="button" value="descargar">
     </div>
 </body>
 
