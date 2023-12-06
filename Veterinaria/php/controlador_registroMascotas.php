@@ -17,34 +17,52 @@ if (!empty($_POST["registro"])) {
         $especie = $_POST["especie"];
         $raza = $_POST["raza"];
 
-        try {
-            $conexion->beginTransaction();
+        // Procesar la imagen
+        $imagen = $_FILES["imagen"];
+        $imagenNombre = $imagen["name"];
+        $imagenTipo = $imagen["type"];
+        $imagenTamanio = $imagen["size"];
+        $imagenTmp = $imagen["tmp_name"];
 
-            $sql1 = $conexion->prepare(
-                "INSERT INTO mascotas(nombreMascota, Edad, Sexo, Especie, Raza) 
-                VALUES (?, ?, ?, ?, ?)"
-            );
-            $sql1->bindParam(1, $nombre);
-            $sql1->bindParam(2, $edad);
-            $sql1->bindParam(3, $sexo);
-            $sql1->bindParam(4, $especie);
-            $sql1->bindParam(5, $raza);
-            $sql1->execute();
+        if (exif_imagetype($imagenTmp)) {
+            // Guardar la imagen en una carpeta en tu servidor
+            $carpetaDestino = "../recursos/";
+            $rutaImagen = $carpetaDestino . $imagenNombre;
+            move_uploaded_file($imagenTmp, $rutaImagen);
 
-            // Obtener el último ID insertado
-            $ultimoID = $conexion->lastInsertId();
+            try {
+                $conexion->beginTransaction();
+    
+                $sql1 = $conexion->prepare(
+                    "INSERT INTO mascotas(nombreMascota, Edad, Sexo, Especie, Raza, Imagen) 
+                    VALUES (?, ?, ?, ?, ?, ?)"
+                );
+                $sql1->bindParam(1, $nombre);
+                $sql1->bindParam(2, $edad);
+                $sql1->bindParam(3, $sexo);
+                $sql1->bindParam(4, $especie);
+                $sql1->bindParam(5, $raza);
+                $sql1->bindParam(6, $rutaImagen);
+                $sql1->execute();
+    
+                // Obtener el último ID insertado
+                $ultimoID = $conexion->lastInsertId();
+    
+                $sql2 = $conexion->prepare("INSERT INTO mascotasporusuario (idUsuario, idMascota) VALUES (?, ?)");
+                $sql2->bindParam(1, $idUsuario);
+                $sql2->bindParam(2, $ultimoID);
+                $sql2->execute();
+    
+                $conexion->commit();
+                echo 'Mascota agregada exitosamente';
+            } catch (PDOException $e) {
+                $conexion->rollBack();
+                echo 'Error al insertar datos: ' . $e->getMessage();
+            }
 
-            $sql2 = $conexion->prepare("INSERT INTO mascotasporusuario (idUsuario, idMascota) VALUES (?, ?)");
-            $sql2->bindParam(1, $idUsuario);
-            $sql2->bindParam(2, $ultimoID);
-            $sql2->execute();
-
-            $conexion->commit();
-            echo 'Mascota agregada exitosamente';
-        } catch (PDOException $e) {
-            $conexion->rollBack();
-            echo 'Error al insertar datos: ' . $e->getMessage();
         }
+
+        
     }
 }
 ?>
