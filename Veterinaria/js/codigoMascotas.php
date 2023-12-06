@@ -33,6 +33,8 @@ try {
         'NotasVet' => $petData[0]["NotasVet"]
     );
     
+    $_SESSION['datosMascota'] = $datosMascota;
+    
     // Convertir el array a formato JSON
     $datosJSON = json_encode($datosMascota);
     
