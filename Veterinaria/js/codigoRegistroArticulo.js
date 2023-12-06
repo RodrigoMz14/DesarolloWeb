@@ -8,7 +8,6 @@ $(document).ready(function () {
             alert("Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG, GIF).");
             return;
         }
-
         // Obtener datos del formulario
         var formData = new FormData(this);
 
@@ -31,10 +30,10 @@ $(document).ready(function () {
 
     // Otras funciones JS para eliminar, cargar datos, etc.
 
-    function validateFile() {
+    function validateFile() {   
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-        var fileInput = $("#fileInput");
-        var fileName = fileInput.val();
+        var fileInput = $("#File_imagen");
+        var fileName = fileInput.val();   
 
         return allowedExtensions.test(fileName);
     }
