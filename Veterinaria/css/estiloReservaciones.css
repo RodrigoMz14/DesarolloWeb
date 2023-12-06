@@ -115,57 +115,6 @@ ul.ajustarMenuBarra li:not(#botonImg){
 
 /* CSS para el contenido principal */ 
 
-#divContenedorInfo{
-    overflow: auto;
-    width: 100%;
-    display: flex;
-    padding: 2%;
-    padding-left: 0px;
-}
 
-#divTablaMascotas{
-    width: 20%;
-    display: flex;
-    padding-left: 10px;
-    align-items: center;
-}
 
-#tablaMascotasAgregadas, tr, th{
-    border: 2px solid #000000;
-    border-collapse: collapse;
-    border-radius: 10px;
-}
-
-#tablaMascotasAgregadas tr th img{
-    width: 100%;
-    height: 100%;
-}
-
-#tablaMascotasAgregadas{
-    width: 70%;
-}
-
-#divInfoGeneral{
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-#divArticulos{
-    width:50%;
-    border: 1px solid #000000;
-}
-
-#encabezadoTabla{
-    color: #fa6603;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-}
-
-#tablaMascotasAgregadas th:not(#encabezadoTabla){
-    color: #000000;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left;
-}
 /* Fin del CSS para el contenido principal */ 

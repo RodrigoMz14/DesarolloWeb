@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (empty($_SESSION["id"])){
+    header("location: login.php");
+}
+
+require('../php/generarTablaMascotas.php');
+$nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,35 +20,31 @@
 </head>
 <body>
     <div id="divPrincipal">
+        <div>
+
+        </div>
+        
         <header id="ContenedorMenu">
+            <!-- Agrega un espacio para mostrar el nombre del usuario -->
+            <span id="nombreUsuario">
+                <?php
+                echo "Bienvenid@ ". $nombreUsuario;
+                ?>
+            </span>
             <ul class="ajustarMenuBarra">
-                <li id="botonImg"><a href="Index.html"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Mascotas</a></li>
-                <li><a href="">Citas</a></li>
-                <li><a href="">Artículos</a></li>
-                <li><a href="">Sucursales</a></li>
-                <li><a href="">Contacto</a></li>
-                <li><a href="">Cuenta</a></li>
+                <li id="botonImg"><a href="Index.php"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="mascotas.php">Mascotas</a></li>
+                <li><a href="reservaciones.php">Citas</a></li>
+                <li><a href="articulos.html">Artículos</a></li>
+                <!-- Agrega un botón para cerrar sesión -->
+                <li><a href="../php/controladorCerrarSesion.php" id="btnSalir" name="">Salir</a></li>
             </ul>
         </header>
 
         <div id="divContenedorInfo">
             <div id="divTablaMascotas">
-                <table id="tablaMascotasAgregadas">
-                    <tr>
-                        <th id="encabezadoTabla">Tus Mascotas</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 1</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 2</th>
-                    </tr>
-                    <tr>
-                        <th>Ejemplo 3</th>
-                    </tr>
-                </table>
+                <?php generarTablaIndex(); ?>
             </div>
             <div id="divInfoGeneral">
                 <div id="divArticulos">
@@ -49,13 +57,10 @@
             <div id="menuInferior">
                 <h2>Veterinaria</h2>
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="mascotas.html">Mascotas</a></li>
-                    <li><a href="">Citas</a></li>
+                    <li><a href="index.php">Inicio</a></li>
+                    <li><a href="mascotas.php">Mascotas</a></li>
+                    <li><a href="reservaciones.php">Citas</a></li>
                     <li><a href="articulos.html">Artículos</a></li>
-                    <li><a href="">Sucursales</a></li>
-                    <li><a href="">Contacto</a></li>
-                    <li><a href="login.html">Cuenta</a></li>
                 </ul>
             </div>
             <div id="infoContacto">

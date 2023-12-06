@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (empty($_SESSION["id"])){
+    header("location: login.php");
+}
+
+$nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +26,7 @@
         </header>
         <div id="divContenedorInfo">
             <div id="divImgMascota">
-                <img src="../recursos/perro1.jpg" width="300px">
+                <img src="" width="">
             </div>
             <div id="divTablaInfoMascota">
                 <table border="1px">
@@ -44,9 +54,6 @@
             </div>
         </div>
         <div id="notasVet"> </div>
-    </div>
-    <div id="ImagenPred" style="visibility: hidden;">
-        <img src="../recursos/fondoMascotas.jpg">
     </div>
 </body>
 
