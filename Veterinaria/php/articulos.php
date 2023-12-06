@@ -28,7 +28,7 @@
     $totalArticles = $rowCount['total'];
 
     // Número de artículos por página
-    $articlesPerPage = 1;
+    $articlesPerPage = 2;
 
     // Calcular el número total de páginas
     $totalPages = ceil($totalArticles / $articlesPerPage);
