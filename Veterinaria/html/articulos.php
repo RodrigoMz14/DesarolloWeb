@@ -1,6 +1,11 @@
 <?php
-    include('../php/databaseConnection.php');
+    session_start();
+    if (empty($_SESSION["id"])){
+        header("location: login.php");
+    }
 
+    include('../php/databaseConnection.php');
+    require('../php/generarTablaMascotas.php');
     $filtros = obtenerFiltros();
 
     // Construir con respecto a filtros las consultas SQL.
@@ -146,15 +151,20 @@
 <body>
     <div id="divPrincipal">
         <header id="ContenedorMenu">
+            <!-- Agrega un espacio para mostrar el nombre del usuario -->
+            <span id="nombreUsuario">
+                <?php
+                echo "Bienvenid@ ". $nombreUsuario;
+                ?>
+            </span>
             <ul class="ajustarMenuBarra">
-                <li id="botonImg"><a href="Index.html"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="">Mascotas</a></li>
-                <li><a href="">Citas</a></li>
-                <li><a href="">Artículos</a></li>
-                <li><a href="">Sucursales</a></li>
-                <li><a href="">Contacto</a></li>
-                <li><a href="">Cuenta</a></li>
+                <li id="botonImg"><a href="Index.php"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="mascotas.php">Mascotas</a></li>
+                <li><a href="reservaciones.php">Citas</a></li>
+                <li><a href="articulos.php">Artículos</a></li>
+                <!-- Agrega un botón para cerrar sesión -->
+                <li><a href="../php/controladorCerrarSesion.php" id="btnSalir" name="">Salir</a></li>
             </ul>
         </header>
 
