@@ -48,7 +48,19 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             </div>
             <div id="divInfoGeneral">
                 <div id="divArticulos">
-                    Aquí se desplegarán algunos artículos de la veterinaria
+                    <h3>Opciones CRUD</h3>
+                    <div class="crud-option">
+                        <a href="registroArticulo.php" class="crud-link">Crear</a>
+                    </div>
+                    <div class="crud-option">
+                        <a href="#" class="crud-link">Leer</a>
+                    </div>
+                    <div class="crud-option">
+                        <a href="#" class="crud-link">Actualizar</a>
+                    </div>
+                    <div class="crud-option">
+                        <a href="#" class="crud-link">Eliminar</a>
+                    </div>
                 </div>
             </div>
         </div>

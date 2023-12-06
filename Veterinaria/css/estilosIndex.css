@@ -113,6 +113,54 @@ ul.ajustarMenuBarra li:not(#botonImg){
 
 /* Fin del CSS para el menu inferior */ 
 
+/* CSS para el CRUD OPTIONS */
+
+#divInfoGeneral {
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+#divArticulos {
+    width:50%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h3 {
+    color: #555;
+    font-family: 'Arial', sans-serif; /* O cualquier fuente sans-serif común */
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.crud-option {
+    margin: 10px 0;
+}
+
+.crud-link {
+    display: inline-block;
+    padding: 10px 20px;
+    min-width: 150px; /* Establecer un ancho mínimo para todos los botones */
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.crud-link:hover {
+    background-color: #45a049;
+}
+
+/* Fin del CSS  para el CRUD OPTIONS */ 
+
 /* CSS para el contenido principal */ 
 
 #divContenedorInfo{
@@ -145,17 +193,6 @@ ul.ajustarMenuBarra li:not(#botonImg){
     width: 70%;
 }
 
-#divInfoGeneral{
-    width: 80%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-#divArticulos{
-    width:50%;
-    border: 1px solid #000000;
-}
 
 #encabezadoTabla{
     color: #fa6603;
@@ -168,4 +205,6 @@ ul.ajustarMenuBarra li:not(#botonImg){
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: left;
 }
+
+
 /* Fin del CSS para el contenido principal */ 
