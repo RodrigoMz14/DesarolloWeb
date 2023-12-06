@@ -116,15 +116,17 @@ ul.ajustarMenuBarra li:not(#botonImg){
 /* CSS para el contenido principal */ 
 
 #divContenedorInfo{
-    width: 95%;
+    overflow: auto;
+    width: 100%;
     display: flex;
     padding: 2%;
+    padding-left: 0px;
 }
 
 #divTablaMascotas{
     width: 20%;
     display: flex;
-    justify-content: center;
+    padding-left: 10px;
     align-items: center;
 }
 
@@ -132,6 +134,11 @@ ul.ajustarMenuBarra li:not(#botonImg){
     border: 2px solid #000000;
     border-collapse: collapse;
     border-radius: 10px;
+}
+
+#tablaMascotasAgregadas tr th img{
+    width: 100%;
+    height: 100%;
 }
 
 #tablaMascotasAgregadas{

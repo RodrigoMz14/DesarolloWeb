@@ -3,12 +3,8 @@ session_start();
 if (empty($_SESSION["id"])){
     header("location: login.php");
 }
-
 require('../php/generarTablaMascotas.php');
-$nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,14 +12,11 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Veterinario de Pueblo Paleta</title>
-    <link rel="stylesheet" href="../css/estilosIndex.css">
+    <link rel="stylesheet" href="../css/estilosMascotas.css">
+    <script language="javascript" src="../js/codigoMascotas.js"></script>
 </head>
 <body>
     <div id="divPrincipal">
-        <div>
-
-        </div>
-        
         <header id="ContenedorMenu">
             <!-- Agrega un espacio para mostrar el nombre del usuario -->
             <span id="nombreUsuario">
@@ -44,12 +37,10 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 
         <div id="divContenedorInfo">
             <div id="divTablaMascotas">
-                <?php generarTablaIndex(); ?>
+                <?php generarTabla(); ?>
             </div>
-            <div id="divInfoGeneral">
-                <div id="divArticulos">
-                    Aquí se desplegarán algunos artículos de la veterinaria
-                </div>
+            <div id="divInfoMascotas">
+                <img src="../recursos/fondoMascotas.jpg">
             </div>
         </div>
 
@@ -59,7 +50,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
                 <ul>
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="mascotas.php">Mascotas</a></li>
-                    <li><a href="reservaciones.php">Citas</a></li>
+                    <li><a href="reservas.php">Citas</a></li>
                     <li><a href="articulos.php">Artículos</a></li>
                 </ul>
             </div>
