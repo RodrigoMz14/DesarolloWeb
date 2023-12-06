@@ -33,7 +33,7 @@
 }
 
 .info > p{
-    font-size: small;
+    font-size:medium;
 }
 
 .grid-article img {
@@ -43,6 +43,20 @@
     background-color: rgb(204, 220, 235);
     border-radius: 5px;
 }
+/**/
+
+
+label.cantidad-label {
+    font-size: 2px; 
+    font-weight: bold; 
+}
+
+.input-cantidad {
+    width: 50px; 
+    padding: 8px;
+    margin-right: 10px;
+}
+
 
 /**/
 .pagination {
@@ -71,6 +85,8 @@
 }
 /**/
 .filtros {
+    flex: 1;
+    margin-right: 20px; 
     border: 1px dotted slategray;
     padding: 10px;
     margin: 10px 0;
@@ -257,4 +273,35 @@ ul.ajustarMenuBarra li:not(#botonImg){
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: left;
 }
+
+
+/**/
+/* Estilos generales */
+.container-article {
+    display: flex;
+}
+
+.filtros {
+    flex: 20%;
+    margin-right: 20px; /* Espacio entre filtros y artículos */
+}
+
+.articulos {
+    flex: 80%;
+}
+
+/* Media Query para cambiar a una columna en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .container-article {
+        flex-direction: column;
+    }
+
+    .filtros, .articulos {
+        flex: 100%; /* O ajusta según tus necesidades */
+        margin-right: 0;
+    }
+}
+
+
+/**/
 /* Fin del CSS para el contenido principal */ 

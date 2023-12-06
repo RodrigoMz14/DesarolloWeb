@@ -8,13 +8,12 @@ $(document).ready(function () {
             alert("Por favor, selecciona un archivo de imagen válido (JPG, JPEG, PNG, GIF).");
             return;
         }
-
         // Obtener datos del formulario
         var formData = new FormData(this);
 
         //Enviar datos a PHP 
         $.ajax({
-            url: 'funcionesCrudArticulo.php',
+            url: '../php/funcionesCrudArticulo.php',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -22,6 +21,10 @@ $(document).ready(function () {
             success: function (response) {
                 // Manejar la respuesta del servidor si es necesario
                 console.log(response);
+                // Limpiar los campos después del éxito
+                limpiarCampos();
+
+                alert("Producto registrado con éxito");
             },
             error: function (error) {
                 console.log(error);
@@ -31,11 +34,16 @@ $(document).ready(function () {
 
     // Otras funciones JS para eliminar, cargar datos, etc.
 
-    function validateFile() {
+    function validateFile() {   
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-        var fileInput = $("#fileInput");
-        var fileName = fileInput.val();
+        var fileInput = $("#File_imagen");
+        var fileName = fileInput.val();   
 
         return allowedExtensions.test(fileName);
+    }
+
+    function limpiarCampos() {
+        // Limpiar los campos del formulario
+        $("#articuloForm")[0].reset();
     }
 });
