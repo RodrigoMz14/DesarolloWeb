@@ -35,7 +35,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
                 <li id="botonImg"><a href="Index.php"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="mascotas.php">Mascotas</a></li>
-                <li><a href="">Citas</a></li>
+                <li><a href="reservaciones.php">Citas</a></li>
                 <li><a href="articulos.html">Artículos</a></li>
                 <li><a href="">Sucursales</a></li>
                 <li><a href="">Contacto</a></li>

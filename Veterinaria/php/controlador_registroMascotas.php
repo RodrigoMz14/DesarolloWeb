@@ -17,9 +17,6 @@ if (!empty($_POST["registro"])) {
         $especie = $_POST["especie"];
         $raza = $_POST["raza"];
 
-        //Guarda a la mascota en la tabla mascotas
-        //INSERT INTO mascotas (idMascota, nombreMascota, Edad, Sexo, Especie, Raza, Imagen, NotasVet) VALUES (NULL, 'demo', '1', 'demo', 'demo', 'demo', NULL, NULL);
-        //SELECT LAST_INSERT_ID();
         $sql = $conexion->prepare(
             "INSERT INTO mascotas(nombreMascota, Edad, Sexo, Especie, Raza) 
             VALUES (?, ?, ?, ?, ?)

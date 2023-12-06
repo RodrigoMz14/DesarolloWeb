@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }else{
             $('#reservas_modal').modal("show");
             $('#diaSemana').html(dias[numeroDia ] + " " + a) ;
+            var fecha = info.dateStr;
+            var res = "";
+            var url = "../php/verificar_horario.php";
+            $.get(url,{fecha:fecha},function(datos){
+                res = datos;
+                alert(res);
+                //$('#respuesta_horario').html(res);
+            });
         }
         }
     });

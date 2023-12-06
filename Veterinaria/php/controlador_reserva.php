@@ -21,4 +21,5 @@
     
     $sql->execute();
 
+    header("location:../html/reservaciones.php");
 ?>
