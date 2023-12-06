@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: login.php");
 }
-$idUsuario =  $_SESSION["id"];
 
+$idUsuario = $_SESSION["id"];
 require('../php/databaseConnection.php');
 
 if (!empty($_POST["registro"])) {
@@ -17,37 +17,33 @@ if (!empty($_POST["registro"])) {
         $especie = $_POST["especie"];
         $raza = $_POST["raza"];
 
-        $sql = $conexion->prepare(
-            "INSERT INTO mascotas(nombreMascota, Edad, Sexo, Especie, Raza) 
-            VALUES (?, ?, ?, ?, ?)
-            ;"
-        );
-        $sql->bindParam(1, $nombre);
-        $sql->bindParam(2, $edad);
-        $sql->bindParam(3, $sexo);
-        $sql->bindParam(4, $especie);
-        $sql->bindParam(5, $raza);
+        try {
+            $conexion->beginTransaction();
 
-        if ($sql->execute()) {
-/*
-            $ultimoID = $conexion->LAST_INSERT_ID();
+            $sql1 = $conexion->prepare(
+                "INSERT INTO mascotas(nombreMascota, Edad, Sexo, Especie, Raza) 
+                VALUES (?, ?, ?, ?, ?)"
+            );
+            $sql1->bindParam(1, $nombre);
+            $sql1->bindParam(2, $edad);
+            $sql1->bindParam(3, $sexo);
+            $sql1->bindParam(4, $especie);
+            $sql1->bindParam(5, $raza);
+            $sql1->execute();
 
-            try {
-                //guarda la relación Usuario -> Mascota en la tabla mascotasporusuario
-                $sql = $conexion->prepare(
-                    "INSERT INTO mascotasporusuario (idUsuario, idMascota`) 
-                    VALUES (?, ?)
-                    ;"
-                );
-                $sql->bindParam(1, $idUsuario);
-                $sql->bindParam(2, $ultimoID);
-            } catch (PDOException $e) {
-                echo "Error de consulta: " . $e->getMessage();
-            }
-*/
-            echo 'Mascota agregada exitosamente, regresando al Login';
-        } else {
-            echo 'Error al registrar';
+            // Obtener el último ID insertado
+            $ultimoID = $conexion->lastInsertId();
+
+            $sql2 = $conexion->prepare("INSERT INTO mascotasporusuario (idUsuario, idMascota) VALUES (?, ?)");
+            $sql2->bindParam(1, $idUsuario);
+            $sql2->bindParam(2, $ultimoID);
+            $sql2->execute();
+
+            $conexion->commit();
+            echo 'Mascota agregada exitosamente';
+        } catch (PDOException $e) {
+            $conexion->rollBack();
+            echo 'Error al insertar datos: ' . $e->getMessage();
         }
     }
 }

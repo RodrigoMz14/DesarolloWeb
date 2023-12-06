@@ -24,16 +24,15 @@ $idUsuario = $_SESSION["id"];
 </head>
 <body>
 <div id="divPrincipal">
-        <header id="ContenedorMenu">
+<header id="ContenedorMenu">
             <ul class="ajustarMenuBarra">
-                <li id="botonImg"><a href="Index.html"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Mascotas</a></li>
-                <li><a href="">Citas</a></li>
-                <li><a href="">Artículos</a></li>
-                <li><a href="">Sucursales</a></li>
-                <li><a href="">Contacto</a></li>
-                <li><a href="">Cuenta</a></li>
+                <li id="botonImg"><a href="Index.php"><img src="../recursos/logoPrincipal.png" alt="Logo del Hospital Veterinario" id="imgLogo"></a></li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="mascotas.php">Mascotas</a></li>
+                <li><a href="reservaciones.php">Citas</a></li>
+                <li><a href="articulos.html">Artículos</a></li>
+                <!-- Agrega un botón para cerrar sesión -->
+                <li><a href="../php/controladorCerrarSesion.php" id="btnSalir" name="">Salir</a></li>
             </ul>
         </header>
         <div id="calendar"></div>
@@ -79,6 +78,7 @@ $idUsuario = $_SESSION["id"];
         </div>
         <div class="modal-body">
           <div class="row">
+              <div id = "respuesta_horario"></div>
               <div class="col-md-6">  
                   <button class="btn btn-success btn-block" id="btn_h1" data-dismiss="modal">08:00 - 10:00</button>
                   <button class="btn btn-success btn-block" id="btn_h2" data-dismiss="modal">10:00 - 12:00</button>

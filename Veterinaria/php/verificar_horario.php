@@ -18,7 +18,7 @@ $datos = $query->fetchAll(PDO::FETCH_ASSOC);
             if($horario[$i] == $hora_cita){
                 $num = $i + 1;
                 $hora_res = "#btn_h".$num;
-                echo "<script> $('$hora_res').attr('disabled',true); </script>";
+                echo "<script> $('$hora_res').attr('disabled',true); $('$hora_res').css('background-color','red') </script>";
             }
             
            

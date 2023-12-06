@@ -30,9 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var res = "";
             var url = "../php/verificar_horario.php";
             $.get(url,{fecha:fecha},function(datos){
-                res = datos;
-                alert(res);
-                //$('#respuesta_horario').html(res);
+                res = datos;                
+                $('#respuesta_horario').html(res);
             });
         }
         }
