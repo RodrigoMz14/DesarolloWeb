@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         //Enviar datos a PHP 
         $.ajax({
-            url: 'funcionesCrudArticulo.php',
+            url: '../php/funcionesCrudArticulo.php',
             type: 'POST',
             data: formData,
             contentType: false,

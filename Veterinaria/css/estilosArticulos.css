@@ -279,18 +279,16 @@ ul.ajustarMenuBarra li:not(#botonImg){
 /* Estilos generales */
 .container-article {
     display: flex;
-    flex-wrap: wrap;
 }
 
 .filtros {
-    flex: 1;
+    flex: 20%;
     margin-right: 20px; /* Espacio entre filtros y artículos */
 }
 
 .articulos {
-    flex: 1; /* O ajusta según tus necesidades */
+    flex: 80%;
 }
-
 
 /* Media Query para cambiar a una columna en pantallas más pequeñas */
 @media screen and (max-width: 768px) {
@@ -298,12 +296,12 @@ ul.ajustarMenuBarra li:not(#botonImg){
         flex-direction: column;
     }
 
-    .filtros,
-    .articulos {
-        flex: 1; /* O ajusta según tus necesidades */
+    .filtros, .articulos {
+        flex: 100%; /* O ajusta según tus necesidades */
         margin-right: 0;
     }
 }
+
 
 /**/
 /* Fin del CSS para el contenido principal */ 

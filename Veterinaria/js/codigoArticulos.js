@@ -65,45 +65,4 @@ function deseleccionar(checkbox) {
 /*
     Funcion para guardar los productos a carrito de compras
 */
-// Capturar el clic en los botones con clase "add-to-cart-btn"
-document.addEventListener('DOMContentLoaded', function () {
-    var buttons = document.querySelectorAll('.guardar-carrito');
 
-    buttons.forEach(function (button) {
-        button.addEventListener('click', handleButtonClick);
-    });
-});
-
-function handleButtonClick() {
-    var productId = this.dataset.product;
-    var data = { id: productId };
-    
-    performAjaxRequest('POST', 'carrito.php', data, function (response) {
-        console.log(response);
-
-        try {
-            var parsedResponse = JSON.parse(response);
-            console.log(parsedResponse);
-        } catch (error) {
-            console.error('Error al analizar la respuesta JSON:', error);
-        }
-    });
-}
-
-function performAjaxRequest(method, url, data, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                callback(xhr.responseText);
-            } else {
-                console.error('Error en la petición AJAX:', xhr.status);
-            }
-        }
-    };
-
-    xhr.send(JSON.stringify(data));
-}
