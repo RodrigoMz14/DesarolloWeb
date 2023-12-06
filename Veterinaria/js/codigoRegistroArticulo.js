@@ -21,6 +21,10 @@ $(document).ready(function () {
             success: function (response) {
                 // Manejar la respuesta del servidor si es necesario
                 console.log(response);
+                // Limpiar los campos después del éxito
+                limpiarCampos();
+
+                alert("Producto registrado con éxito");
             },
             error: function (error) {
                 console.log(error);
@@ -36,5 +40,10 @@ $(document).ready(function () {
         var fileName = fileInput.val();   
 
         return allowedExtensions.test(fileName);
+    }
+
+    function limpiarCampos() {
+        // Limpiar los campos del formulario
+        $("#articuloForm")[0].reset();
     }
 });

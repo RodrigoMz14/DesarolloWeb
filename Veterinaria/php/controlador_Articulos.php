@@ -6,6 +6,12 @@
 
     include('../php/databaseConnection.php');
     require('../php/generarTablaMascotas.php');
+
+    // Definir valores válidos para mascotas
+    $mascotasValidas = array("Perro", "Gato", "Animal pequeño", "Ave");
+    $categoriasValidas = array("Alimento para mascota", "Medicamento", "Accesorio", "Productos de cuidado", "Juguete para mascota");
+    $edadValida = array("Cachorro", "Adulto");
+
     $filtros = obtenerFiltros();
 
     // Construir con respecto a filtros las consultas SQL.
@@ -39,7 +45,7 @@
     $totalPages = ceil($totalArticles / $articlesPerPage);
 
     // Obtener el número de página actual
-    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+    $currentPage = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 
     // Calcular el índice de inicio para la consulta SQL
     $startIndex = ($currentPage - 1) * $articlesPerPage;
@@ -49,10 +55,12 @@
 
     // Obtener los filtros de la URL o del Local Storage
     function obtenerFiltros() {
+        global $mascotasValidas, $categoriasValidas, $edadValida;
 
-        $mascotas = isset($_GET['mascotas']) ? $_GET['mascotas'] : NULL;
-        $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : NULL;
-        $edad = isset($_GET['edad']) ? $_GET['edad'] : NULL;
+        $mascotas = isset($_GET['mascotas']) && in_array($_GET['mascotas'], $mascotasValidas) ? $_GET['mascotas'] : NULL;
+        $categoria = isset($_GET['categoria']) && in_array($_GET['categoria'], $categoriasValidas) ? $_GET['categoria'] : NULL;
+        $edad = isset($_GET['edad']) && in_array($_GET['edad'], $edadValida) ? $_GET['edad'] : NULL;
+
 
         $filtros = array(
             'mascotas' => $mascotas,

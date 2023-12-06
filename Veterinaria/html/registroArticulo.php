@@ -36,25 +36,25 @@
 
         <label for="edad">Edad:</label>
         <select id="edad" name="edad">
-            <option value="Cachorros">Cachorros</option>
-            <option value="Adultos">Adultos</option>
+            <option value="Cachorro">Cachorro</option>
+            <option value="Adulto">Adulto</option>
         </select>
 
         <label for="categoria">Categoría:</label>
         <select id="categoria" name="categoria">
-            <option value="Alimento para mascotas">Alimento para mascotas</option>
-            <option value="Medicamentos">Medicamentos</option>
-            <option value="Accesorios">Accesorios</option>
+            <option value="Alimento para mascota">Alimento para mascota</option>
+            <option value="Medicamento">Medicamento</option>
+            <option value="Accesorio">Accesorio</option>
             <option value="Productos de cuidado">Productos de cuidado</option>
-            <option value="Juguetes para mascotas">Juguetes para mascotas</option>
+            <option value="Juguete para mascota">Juguete para mascota</option>
         </select>
 
         <label for="tipoAnimal">Tipo de Animal:</label>
         <select id="tipoAnimal" name="tipoAnimal">
-            <option value="Perros">Perros</option>
-            <option value="Gatos">Gatos</option>
-            <option value="Animales pequeños">Animales pequeños</option>
-            <option value="Aves">Aves</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Animal pequeño">Animales pequeño</option>
+            <option value="Ave">Ave</option>
         </select>
 
         <button type="submit">Guardar</button>
