@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Función para insertar un nuevo artículo en la base de datos
 function insertarArticulo($nombre, $descripcion, $cantidad, $precio, $url_imagen, $edad, $categoria, $tipoAnimal) {
-    global $pdo;
+    global $conexion;
 
     try {
 
@@ -35,7 +35,7 @@ function insertarArticulo($nombre, $descripcion, $cantidad, $precio, $url_imagen
             // Si no contiene la ruta completa, agregarla
             $url_imagen = '../recursos/articulos/' . $url_imagen;
         }
-        $stmt = $pdo->prepare("INSERT INTO articulo (nombre, descripcion, cantidad, precio, url_imagen, edad, categoria, tipoAnimal) 
+        $stmt = $conexion->prepare("INSERT INTO articulo (nombre, descripcion, cantidad, precio, url_imagen, edad, categoria, tipoAnimal) 
         VALUES (:nombre, :descripcion, :cantidad, :precio, :url_imagen, :edad, :categoria, :tipoAnimal)");
 
         $stmt->bindParam(':nombre', $nombre);

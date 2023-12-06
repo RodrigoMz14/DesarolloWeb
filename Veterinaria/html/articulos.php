@@ -1,5 +1,5 @@
 <?php
-    include('databaseConnection.php');
+    include('../php/databaseConnection.php');
 
     $filtros = obtenerFiltros();
 
@@ -10,7 +10,7 @@
 
     // Obtener el número total de artículos
     $sqlCount = "SELECT COUNT(*) as total FROM articulo WHERE 1 $filtroMascotas $filtroCategoria $filtroEdad";
-    $stmtCount = $pdo->prepare($sqlCount);
+    $stmtCount = $conexion->prepare($sqlCount);
 
     // Bind de los valores de los filtros
     if (!empty($filtros['mascotas'])) {
@@ -58,7 +58,7 @@
     }
 
     function obtenerArticulos($startIndex, $articlesPerPage) {
-        global $pdo, $filtros;
+        global $conexion, $filtros;
         
         // Construir con respecto a filtros las consultas SQL.
         $filtroMascotas = isset($filtros['mascotas']) ? "AND tipoAnimal = :mascotas" : "";
@@ -67,7 +67,7 @@
 
         // Consulta SQL para obtener los artículos de la página actual
         $sqlArticles = "SELECT * FROM articulo WHERE 1 $filtroMascotas $filtroCategoria $filtroEdad LIMIT :startIndex, :articlesPerPage";
-        $stmtArticles = $pdo->prepare($sqlArticles);
+        $stmtArticles = $conexion->prepare($sqlArticles);
         $stmtArticles->bindParam(':startIndex', $startIndex, PDO::PARAM_INT);
         $stmtArticles->bindParam(':articlesPerPage', $articlesPerPage, PDO::PARAM_INT);
 

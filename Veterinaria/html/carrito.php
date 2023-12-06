@@ -1,5 +1,5 @@
 <?php
-include('databaseConnection.php');
+include('../php/databaseConnection.php');
 session_start();
 
 // Inicializar el carrito si no existe

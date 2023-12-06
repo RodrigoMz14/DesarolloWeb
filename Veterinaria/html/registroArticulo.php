@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Artículos</title>
+    <title>Registro Articulo</title>
     <link rel="stylesheet" href="../css/estiloArticuloGuardar.css">
 </head>
 <body>
 
 <div class="container">
+    <a class="back-button" href="index.php">Regresar</a>
     <h2>Registro de Artículo</h2>
-    <form id="articuloForm">
+    <?php include "../php/funcionesCrudArticulo.php"; ?>
+
+    <form id="articuloForm" method="POST" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
 
@@ -23,9 +26,10 @@
         <label for="precio">Precio:</label>
         <input type="text" id="precio" name="precio" pattern="[0-9]+(\.[0-9]{1,2})?" required>
 
+        <label for="File_imagen">Imagen:</label>
         <div id="drop-area">
             <p>Suelta tu archivo aquí o haz clic para seleccionar uno.</p>
-            <input type="file" id="fileInput" accept="image/*" required>
+            <input type="file" id="File_imagen" name="File_imagen" accept="image/*" required>
         </div>
 
         <label for="edad">Edad:</label>

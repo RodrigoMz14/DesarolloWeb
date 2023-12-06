@@ -29,7 +29,7 @@ require('../php/generarTablaMascotas.php');
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="mascotas.php">Mascotas</a></li>
                 <li><a href="reservaciones.php">Citas</a></li>
-                <li><a href="articulos.html">Artículos</a></li>
+                <li><a href="articulos.php">Artículos</a></li>
                 <!-- Agrega un botón para cerrar sesión -->
                 <li><a href="../php/controladorCerrarSesion.php" id="btnSalir" name="">Salir</a></li>
             </ul>
@@ -51,7 +51,7 @@ require('../php/generarTablaMascotas.php');
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="mascotas.php">Mascotas</a></li>
                     <li><a href="reservas.php">Citas</a></li>
-                    <li><a href="articulos.html">Artículos</a></li>
+                    <li><a href="articulos.php">Artículos</a></li>
                 </ul>
             </div>
             <div id="infoContacto">
