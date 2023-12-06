@@ -79,7 +79,6 @@ Fin del CSS para el menu inferior */
     align-items: center;
     padding: 3px;
     margin: 3px;
-    border: 1px solid black;
     border-radius: 3%;
 }
 
@@ -89,12 +88,23 @@ Fin del CSS para el menu inferior */
     max-height: 100%;
 }
 
+#tituloMascota{
+    padding: 20px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 #divTablaInfoMascota {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     margin: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #notasVet {
@@ -104,6 +114,46 @@ Fin del CSS para el menu inferior */
     padding: 10px;
     margin: 10px;
     width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #000;
+}
+
+#descargar {
+    background-color: #FFFFFF;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+  
+#descargar:hover {
+    background-color: #1d3bba;
+}
+
+#divTablaInfoMascota table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #2F4FFD;
+    color: #000000;
+  }
+  
+#divTablaInfoMascota th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #2F4FFD;
+}
+  
+#divTablaInfoMascota th {
+    background-color: #2F4FFD;
+    color: #fff;
+}
+  
+#divTablaInfoMascota tr:nth-child(odd) {
+    background-color: rgba(47, 79, 253, 0.1);
 }
 
 

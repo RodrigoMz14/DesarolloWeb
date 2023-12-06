@@ -29,7 +29,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
                 <img src="" width="">
             </div>
             <div id="divTablaInfoMascota">
-                <table border="1px">
+                <table>
                     <tr>
                         <td> Nombre: </td>
                         <td id="infoMascota_Nombre">  </td>
@@ -54,7 +54,7 @@ $nombreUsuario = $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             </div>
         </div>
         <div id="notasVet"> </div>
-        <input id="descargar" type="button" value="descargar">
+        <input id="descargar" type="button" value="Descargar">
     </div>
 </body>
 
